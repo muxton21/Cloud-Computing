@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 import org.apache.hadoop.conf.Configuration;
@@ -12,21 +13,37 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class WordCount {
+    private static String[] alphabetiseArray(String[] array){
+        Arrays.sort(array);
+        return array;
+    }
+
+    private static String alphabetiseWord(String word){
+        String[] wordArray = word.split("");
+        Arrays.sort(wordArray);
+        String joinedArray = String.join("", wordArray);
+        return joinedArray;
+    }
 
   public static class TokenizerMapper
        extends Mapper<Object, Text, Text, IntWritable>{
 
-    private final static IntWritable one = new IntWritable(1);
+    private final static IntWritable occurances = new IntWritable(1);
     private Text word = new Text();
 
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
+
         String line = value.toString();
-        line.toLowerCase().replaceAll("[^a-z ]","");
-        StringTokenizer itr = new StringTokenizer(line);
-        while (itr.hasMoreTokens()) {
-            word.set(itr.nextToken());
-            context.write(word, one);
+        String[] splitString = string.split("[^a-zA-Z'\"]");
+        //remove any punctuation
+        for(int i=0;i<splitString.length;i++){
+            splitString[i] = splitString[i].toLowerCase().replaceAll("[^a-z ]", "");
+        }
+        for(int i=0;i<splitString.length;i++){
+            splitString[i] = alphabetiseWord(splitString[i]);
+            word.set(splitString[i]);
+            context.write(word, occurances);
         }
     }
   }
