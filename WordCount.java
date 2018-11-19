@@ -1,6 +1,17 @@
+import java.io.*;
+import java.net.URL;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.StringTokenizer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -52,10 +63,7 @@ public class WordCount {
     private static String alphabetiseWord(String word){
         String[] wordArray = word.split("");
         Arrays.sort(wordArray);
-        String string = "";
-        for(int i=0;i<wordArray.length;i++){
-            string += wordArray[i];
-        }
+        String string = String.join("", wordArray);
         return string;
     }
 
@@ -65,7 +73,7 @@ public class WordCount {
         for(int i=0;i<array.length;i++){
             //boolean if item is present
             Boolean stringEqual = item.equals(array[i]);
-            if(stringEqual || array[i] == null){
+            if(stringEqual){
                 return true;
             }
         }
@@ -101,6 +109,7 @@ public class WordCount {
                 resultArray = arrayPush(splitString[i], resultArray);
             }
         }
+
         for(int i=0;i<resultArray.length;i++){
             //resultArray[i] = alphabetiseWord(resultArray[i]);
             word.set(resultArray[i]);
