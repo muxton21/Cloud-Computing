@@ -22,8 +22,8 @@ public class WordCount {
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
         String line = value.toString();
-        line.toLowerCase().replaceAll("[^a-z ]+","");
-        StringTokenizer itr = new StringTokenizer(string);
+        line.toLowerCase().replaceAll("[^a-z ]","");
+        StringTokenizer itr = new StringTokenizer(line);
         while (itr.hasMoreTokens()) {
             word.set(itr.nextToken());
             context.write(word, one);
