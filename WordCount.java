@@ -18,6 +18,37 @@ public class WordCount {
         return array;
     }
 
+    private static String[] arrayPush(String item, String[] oldArray){
+        // New array with an additional element
+        String[] newArray = new String[oldArray.length + 1];
+        // Copy all the elements from the initial array
+        for(int k = 0; k < oldArray.length; k++){
+            newArray[k] = oldArray[k];
+        }
+
+        // Assign the new element with any value
+        newArray[newArray.length - 1] = item;
+        // Set the new array to the initial array while disposing of the inital array
+        oldArray = newArray;
+        return oldArray;
+    }
+
+    /* private static String[][] arrayPushArrayOfArrays(String[] item, String[][] oldArray){
+        // New array with an additional element
+        String[][] newArray = new String[oldArray.length +1][];
+        // Copy all the elements from the initial array to the new array
+        for(int i=0; i < oldArray.length; i++){
+            newArray[i] = oldArray[i];
+        }
+
+        // Assign the new element with any value
+        newArray[newArray.length - 1] = item;
+        // Set the new array to the initial array while disposing of the initial array
+        oldArray = newArray;
+        //return old array with new element pushed
+        return oldArray;
+    } */
+
     private static String alphabetiseWord(String word){
         String[] wordArray = word.split("");
         Arrays.sort(wordArray);
@@ -26,6 +57,19 @@ public class WordCount {
             string += wordArray[i];
         }
         return string;
+    }
+
+    //Function checks if a string is present in an array of strings
+    private static Boolean isStringInArray(String item, String[] array){
+        //cycle through input array
+        for(int i=0;i<array.length;i++){
+            //boolean if item is present
+            Boolean stringEqual = item.equals(array[i]);
+            if(stringEqual || array[i] == null){
+                return true;
+            }
+        }
+        return false;
     }
 
   public static class TokenizerMapper
@@ -42,6 +86,15 @@ public class WordCount {
         //remove any punctuation
         for(int i=0;i<splitString.length;i++){
             splitString[i] = splitString[i].toLowerCase().replaceAll("[^a-z ]", "");
+        }
+
+        //removes all duplicate words from array to leave only unique values
+        for(int i=0;i<splitString.length;i++){
+            //if value in split string is in the result array
+            Boolean condition = isStringInArray(splitString[i], resultArray);
+            if(!condition){
+                resultArray = arrayPush(splitString[i], resultArray);
+            }
         }
         for(int i=0;i<splitString.length;i++){
             splitString[i] = alphabetiseWord(splitString[i]);
