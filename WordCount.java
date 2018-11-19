@@ -35,7 +35,7 @@ public class WordCount {
                     ) throws IOException, InterruptedException {
 
         String line = value.toString();
-        String[] splitString = string.split("[^a-zA-Z'\"]");
+        String[] splitString = line.split("[^a-zA-Z'\"]");
         //remove any punctuation
         for(int i=0;i<splitString.length;i++){
             splitString[i] = splitString[i].toLowerCase().replaceAll("[^a-z ]", "");
