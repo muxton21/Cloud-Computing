@@ -21,11 +21,13 @@ public class WordCount {
 
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
-      StringTokenizer itr = new StringTokenizer(value.toString().replaceAll("[^a-z]+", ""));
-      while (itr.hasMoreTokens()) {
+        String line = value.toString();
+        line.toLowerCase().replaceAll("[^a-z ]+","");
+        StringTokenizer itr = new StringTokenizer(string);
+        while (itr.hasMoreTokens()) {
             word.set(itr.nextToken());
             context.write(word, one);
-      }
+        }
     }
   }
 
