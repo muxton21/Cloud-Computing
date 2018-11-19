@@ -81,7 +81,12 @@ public class WordCount {
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
 
+        //An array to store all the unique words in the e-book
+        String[] resultArray = {};
+
+        //puts the entire text of the book into a string
         String line = value.toString();
+        //split the string into an array of all words in the book
         String[] splitString = line.split("[^a-zA-Z'\"]");
         //remove any punctuation
         for(int i=0;i<splitString.length;i++){
@@ -90,15 +95,15 @@ public class WordCount {
 
         //removes all duplicate words from array to leave only unique values
         for(int i=0;i<splitString.length;i++){
-            //if value in split string is in the result array
+            //if value in split string is in the result array(array of only unique words)
             Boolean condition = isStringInArray(splitString[i], resultArray);
             if(!condition){
                 resultArray = arrayPush(splitString[i], resultArray);
             }
         }
-        for(int i=0;i<splitString.length;i++){
-            splitString[i] = alphabetiseWord(splitString[i]);
-            word.set(splitString[i]);
+        for(int i=0;i<resultArray.length;i++){
+            resultArray[i] = alphabetiseWord(resultArray[i]);
+            word.set(resultArray[i]);
             context.write(word, occurances);
         }
     }
