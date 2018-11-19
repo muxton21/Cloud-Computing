@@ -102,7 +102,7 @@ public class WordCount {
             }
         }
         for(int i=0;i<resultArray.length;i++){
-            resultArray[i] = alphabetiseWord(resultArray[i]);
+            //resultArray[i] = alphabetiseWord(resultArray[i]);
             word.set(resultArray[i]);
             context.write(word, occurances);
         }
