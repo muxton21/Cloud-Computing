@@ -63,7 +63,10 @@ public class WordCount {
     private static String alphabetiseWord(String word){
         String[] wordArray = word.split("");
         Arrays.sort(wordArray);
-        String string = String.join("", wordArray);
+        String string = "";
+        for(int i=0;i<wordArray.length;i++){
+            string += wordArray[i];
+        }
         return string;
     }
 
