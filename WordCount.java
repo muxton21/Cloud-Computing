@@ -118,9 +118,9 @@ public class WordCount {
         }
 
         for(int i=0;i<splitString.length;i++){
-            //alphabetisedWord.set(alphabetiseWord(resultArray[i]));
+            alphabetisedWord.set(alphabetiseWord(resultArray[i]));
             orderedWord.set(resultArray[i]);
-            context.write(orderedWord, orderedWord);
+            context.write(alphabetisedWord, orderedWord);
         }
     }
   }
@@ -132,9 +132,10 @@ public class WordCount {
     public void reduce(Text key, Iterable<Text> values,
                        Context context
                        ) throws IOException, InterruptedException {
+        //Set<Text> uniques = new HashSet<Text>();
       String resultWord = "";
       for (Text val : values) {
-        resultWord += val;
+        resultWord += val.toString();
       }
       result.set(resultWord);
       context.write(key, result);
