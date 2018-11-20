@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.*;
+import java.util.Set;
+import java.util.HashSet;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -137,7 +140,7 @@ public class WordCount {
       for (Text val : values) {
         resultWord += val.toString();
       } */
-      Set<Text> uniques = new HashSet<Text>();
+      HashSet<Text> uniques = new HashSet<Text>();
       StringBuilder builder = new StringBuilder();
       for(Text value : values){
           if (uniques.add(value)) {
@@ -159,7 +162,7 @@ public class WordCount {
     job.setCombinerClass(IntSumReducer.class);
     job.setReducerClass(IntSumReducer.class);
     job.setOutputKeyClass(Text.class);
-    job.setOutputValueClass(IntWritable.class);
+    job.setOutputValueClass(Text.class);
     FileInputFormat.addInputPath(job, new Path(args[0]));
     FileOutputFormat.setOutputPath(job, new Path(args[1]));
     System.exit(job.waitForCompletion(true) ? 0 : 1);
