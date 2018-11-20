@@ -29,6 +29,33 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class AnagramFinder {
 
+    //Function checks if a string is present in an array of strings
+    private static Boolean isStringInArray(String item, String[] array){
+        //cycle through input array
+        for(int i=0;i<array.length;i++){
+            //boolean if item is present
+            if(item.equals(array[i]) || array[i] == null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static String[] arrayPush(String item, String[] oldArray){
+        // New array with an additional element
+        String[] newArray = new String[oldArray.length + 1];
+        // Copy all the elements from the initial array
+        for(int k = 0; k < oldArray.length; k++){
+            newArray[k] = oldArray[k];
+        }
+
+        // Assign the new element with any value
+        newArray[newArray.length - 1] = item;
+        // Set the new array to the initial array while disposing of the inital array
+        oldArray = newArray;
+        return oldArray;
+    }
+
     public static class Mapper extends org.apache.hadoop.mapreduce.Mapper<Object, Text, Text, Text> {
 
         private Text alphabetisedWord = new Text();
@@ -80,32 +107,6 @@ public class AnagramFinder {
             }
         }
 
-        //Function checks if a string is present in an array of strings
-        private static Boolean isStringInArray(String item, String[] array){
-            //cycle through input array
-            for(int i=0;i<array.length;i++){
-                //boolean if item is present
-                if(item.equals(array[i]) || array[i] == null){
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private static String[] arrayPush(String item, String[] oldArray){
-            // New array with an additional element
-            String[] newArray = new String[oldArray.length + 1];
-            // Copy all the elements from the initial array
-            for(int k = 0; k < oldArray.length; k++){
-                newArray[k] = oldArray[k];
-            }
-
-            // Assign the new element with any value
-            newArray[newArray.length - 1] = item;
-            // Set the new array to the initial array while disposing of the inital array
-            oldArray = newArray;
-            return oldArray;
-        }
 
     }
 
@@ -116,20 +117,25 @@ public class AnagramFinder {
 
         protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             Set<Text> uniques = new HashSet<Text>();
+            String[] anagramWords = {};
             int size = 0;
-            StringBuilder builder = new StringBuilder();
             for (Text value : values) {
-                if (uniques.add(value)) {
+                Boolean condition = isStringInArray(value.toString(), anagramWords);
+                if (!condition) {
                     size++;
-                    builder.append(value.toString());
-                    builder.append(",");
+                    anagramWords = arrayPush(value.toString(), anagramWords);
                 }
             }
-            builder.setLength(builder.length()-1);
 
             if (size > 1) {
                 count.set(size);
-                outputValue.set(builder.toString());
+                StringBuilder builder = new StringBuilder();
+                for(String string : anagramWords){
+                    builder.append(string);
+                    builder.append(" , ");
+                }
+                String anagramsString = builder.toString();
+                outputValue.set(anagramsString);
                 context.write(count, outputValue);
             }
         }
