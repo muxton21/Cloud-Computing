@@ -118,7 +118,7 @@ public class WordCount {
         }
 
         for(int i=0;i<splitString.length;i++){
-            alphabetisedWord = alphabetiseWord(resultArray[i]);
+            alphabetisedWord.set(alphabetiseWord(resultArray[i]));
             orderedWord.set(resultArray[i]);
             context.write(alphabetisedWord, orderedWord);
         }
@@ -132,7 +132,7 @@ public class WordCount {
     public void reduce(Text key, Iterable<Text> values,
                        Context context
                        ) throws IOException, InterruptedException {
-      int resultWord = "";
+      String resultWord = "";
       for (Text val : values) {
         resultWord += val.get();
       }
