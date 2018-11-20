@@ -34,7 +34,7 @@ public class AnagramFinder {
         private Text sortedText = new Text();
         private Text outputValue = new Text();
 
-        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+        protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
             StringTokenizer tokenizer = new StringTokenizer(value.toString(),
                     " \t\n\r\f,.:()!?", false);
             while (tokenizer.hasMoreTokens()) {
@@ -91,10 +91,11 @@ public class AnagramFinder {
         }
 
     }
-
-    public int run(String[] args) throws Exception {
+    
+    public static void main(String[] args) throws Exception {
         Path inputPath = new Path(args[0]);
         Path outputPath = new Path(args[1]);
+        Configuration conf = new Configuration();
 
         Job job = new Job(conf, "Anagram Finder");
 
@@ -110,10 +111,6 @@ public class AnagramFinder {
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(Text.class);
 
-        return job.waitForCompletion(false) ? 0 : -1;
-    }
-
-    public static void main(String[] args) throws Exception {
-        System.exit(ToolRunner.run(new Configuration(), new AnagramFinder(), args));
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
