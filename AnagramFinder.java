@@ -84,10 +84,11 @@ public class AnagramFinder {
         private static String alphabetiseWord(String word){
             String[] wordArray = word.split("");
             Arrays.sort(wordArray);
-            String string = "";
-            for(int i=0;i<wordArray.length;i++){
-                string += wordArray[i];
+            StringBuilder builder = new StringBuilder();
+            for(String char : wordArray){
+                builder.append(char);
             }
+            String string = builder.toString;
             return string;
         }
 
@@ -97,11 +98,17 @@ public class AnagramFinder {
 
         //WORKING HERE REMOVE UNIQUE
         protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+            //initate array of unique values
             String[] resultArray = {};
+            //iterate through words
             for (Text value : values) {
+                //boolean is string already in the resultArray
                 Boolean condition = isStringInArray(value.toString(), resultArray);
+                // if not in the array
                 if (!condition) {
+                    //push value to the array
                     resultArray = arrayPush(value.toString(), resultArray);
+                    //write the key (alphabetised word) and unique word
                     context.write(key, value);
                 }
             }
@@ -116,24 +123,41 @@ public class AnagramFinder {
         private Text outputValue = new Text();
 
         protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-            Set<Text> uniques = new HashSet<Text>();
+
+            //create empty array of all the anagram words
             String[] anagramWords = {};
+
+            //initate the size of the anagrams array (how many anagram words are in the .txt file)
             int size = 0;
+            //iterate through the array of unique words
             for (Text value : values) {
+                //is the word already covered
                 Boolean condition = isStringInArray(value.toString(), anagramWords);
+                //if the word is unique
                 if (!condition) {
+                    //increase size value
                     size++;
+                    //push unique word to the anagram words array
                     anagramWords = arrayPush(value.toString(), anagramWords);
                 }
             }
 
+            //if the number of unique words that have anagrams has a size greater than one
+            //i.e. there is at least one anagram
             if (size > 1) {
+                //set the count number to the number of occurances of these anagram words
                 count.set(size);
+
+                //converts the anagramWords array into an array of strings
                 StringBuilder builder = new StringBuilder();
+                String commaSarator = "";
                 for(String string : anagramWords){
+                    builder.append(commaSarator);
                     builder.append(string);
-                    builder.append(" , ");
+                    commaSarator = ", ";
                 }
+
+
                 String anagramsString = builder.toString();
                 outputValue.set(anagramsString);
                 context.write(count, outputValue);
