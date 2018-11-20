@@ -31,18 +31,39 @@ public class AnagramFinder {
 
     public static class Mapper extends org.apache.hadoop.mapreduce.Mapper<Object, Text, Text, Text> {
 
-        private Text sortedText = new Text();
-        private Text outputValue = new Text();
+        private Text alphabetisedWord = new Text();
+        private Text orderedWord = new Text();
 
         protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
-            StringTokenizer tokenizer = new StringTokenizer(value.toString(),
-                    " \t\n\r\f,.:()!?", false);
-            while (tokenizer.hasMoreTokens()) {
-                String token = tokenizer.nextToken().trim().toLowerCase();
-                sortedText.set(sort(token));
-                outputValue.set(token);
-                context.write(sortedText, outputValue);
+
+            //An array to store all the unique words in the e-book
+            String[] resultArray = {};
+
+            //puts the entire text of the book into a string
+            String line = value.toString();
+            //split the string into an array of all words in the book
+            String[] splitString = line.split("[^a-zA-Z'\"]");
+
+            //remove any punctuation
+            for(int i=0;i<splitString.length;i++){
+                splitString[i] = splitString[i].toLowerCase().replaceAll("[^a-z ]", "");
             }
+
+            for(int i=0;i<splitString.length;i++){
+                alphabetisedWord.set(alphabetiseWord(resultArray[i]));
+                orderedWord.set(resultArray[i]);
+                context.write(alphabetisedWord, orderedWord);
+            }
+        }
+
+        private static String alphabetiseWord(String word){
+            String[] wordArray = word.split("");
+            Arrays.sort(wordArray);
+            String string = "";
+            for(int i=0;i<wordArray.length;i++){
+                string += wordArray[i];
+            }
+            return string;
         }
 
         protected String sort(String input) {

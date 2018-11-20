@@ -11,25 +11,35 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="WordCount.java" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/WordCount.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="412">
+                    <caret line="65" column="4" lean-forward="true" selection-start-line="65" selection-start-column="4" selection-end-line="73" selection-end-column="5" />
+                    <folding>
+                      <element signature="imports" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="AnagramFinder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AnagramFinder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WordCount.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WordCount.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1236">
-              <caret line="160" column="38" selection-start-line="160" selection-start-column="23" selection-end-line="160" selection-end-column="38" />
+            <state relative-caret-position="452">
+              <caret line="59" column="48" lean-forward="true" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -158,12 +168,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542704045334</updated>
-      <workItem from="1542704051855" duration="8771000" />
+      <workItem from="1542704051855" duration="8989000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8771000" />
+    <option name="totallyTimeSpent" value="8989000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1307" y="-1" width="1045" height="716" extended-state="0" />
@@ -210,8 +220,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WordCount.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1236">
-          <caret line="160" column="38" selection-start-line="160" selection-start-column="23" selection-end-line="160" selection-end-column="38" />
+        <state relative-caret-position="412">
+          <caret line="65" column="4" lean-forward="true" selection-start-line="65" selection-start-column="4" selection-end-line="73" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -220,8 +230,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AnagramFinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="452">
+          <caret line="59" column="48" lean-forward="true" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
