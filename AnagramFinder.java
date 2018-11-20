@@ -80,6 +80,18 @@ public class AnagramFinder {
             }
         }
 
+        //Function checks if a string is present in an array of strings
+        private static Boolean isStringInArray(String item, String[] array){
+            //cycle through input array
+            for(int i=0;i<array.length;i++){
+                //boolean if item is present
+                if(item.equals(array[i]) || array[i] == null){
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private static String[] arrayPush(String item, String[] oldArray){
             // New array with an additional element
             String[] newArray = new String[oldArray.length + 1];
