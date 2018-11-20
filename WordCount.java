@@ -118,9 +118,9 @@ public class WordCount {
         }
 
         for(int i=0;i<splitString.length;i++){
-            alphabetisedWord.set(alphabetiseWord(resultArray[i]));
+            //alphabetisedWord.set(alphabetiseWord(resultArray[i]));
             orderedWord.set(resultArray[i]);
-            context.write(alphabetisedWord, orderedWord);
+            context.write(orderedWord, orderedWord);
         }
     }
   }
