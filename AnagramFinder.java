@@ -36,9 +36,6 @@ public class AnagramFinder {
 
         protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 
-            //An array to store all the unique words in the e-book
-            String[] resultArray = {};
-
             //puts the entire text of the book into a string
             String line = value.toString();
             //split the string into an array of all words in the book
@@ -49,9 +46,10 @@ public class AnagramFinder {
                 splitString[i] = splitString[i].toLowerCase().replaceAll("[^a-z ]", "");
             }
 
+            //set each word to the key value pair in the mapper
             for(int i=0;i<splitString.length;i++){
-                alphabetisedWord.set(alphabetiseWord(resultArray[i]));
-                orderedWord.set(resultArray[i]);
+                alphabetisedWord.set(alphabetiseWord(splitString[i]));
+                orderedWord.set(splitString[i]);
                 context.write(alphabetisedWord, orderedWord);
             }
         }
