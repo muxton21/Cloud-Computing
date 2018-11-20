@@ -64,24 +64,37 @@ public class AnagramFinder {
             return string;
         }
 
-        protected String sort(String input) {
-            char[] cs = input.toCharArray();
-            Arrays.sort(cs);
-            return new String(cs);
-        }
-
     }
 
     public static class Combiner extends org.apache.hadoop.mapreduce.Reducer<Text, Text, Text, Text> {
 
+        //WORKING HERE REMOVE UNIQUE
         protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-            Set<Text> uniques = new HashSet<Text>();
+            String[] resultArray = {};
             for (Text value : values) {
-                if (uniques.add(value)) {
+                Boolean condition = isStringInArray(value.toString(), resultArray);
+                if (!condition) {
+                    resultArray = arrayPush(value.toString(), resultArray);
                     context.write(key, value);
                 }
             }
         }
+
+        private static String[] arrayPush(String item, String[] oldArray){
+            // New array with an additional element
+            String[] newArray = new String[oldArray.length + 1];
+            // Copy all the elements from the initial array
+            for(int k = 0; k < oldArray.length; k++){
+                newArray[k] = oldArray[k];
+            }
+
+            // Assign the new element with any value
+            newArray[newArray.length - 1] = item;
+            // Set the new array to the initial array while disposing of the inital array
+            oldArray = newArray;
+            return oldArray;
+        }
+
     }
 
     public static class Reducer extends org.apache.hadoop.mapreduce.Reducer<Text, Text, IntWritable, Text> {
