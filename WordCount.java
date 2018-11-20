@@ -98,8 +98,8 @@ public class WordCount {
   public static class TokenizerMapper
        extends Mapper<Object, Text, Text, IntWritable>{
 
-    private final static IntWritable occurances = new IntWritable(1);
-    private Text word = new Text();
+    private Text alphabetisedWord = new Text();
+    private Text orderedWord = new Text();
 
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
@@ -112,34 +112,31 @@ public class WordCount {
         //split the string into an array of all words in the book
         String[] splitString = line.split("[^a-zA-Z'\"]");
 
-        //removes all duplicate words from array to leave only unique values
-        resultArray = checkForDuplicates(splitString, resultArray);
-
         //remove any punctuation
-        for(int i=0;i<resultArray.length;i++){
-            resultArray[i] = resultArray[i].toLowerCase().replaceAll("[^a-z ]", "");
+        for(int i=0;i<splitString.length;i++){
+            splitString[i] = splitString[i].toLowerCase().replaceAll("[^a-z ]", "");
         }
 
-        for(int i=0;i<resultArray.length;i++){
-            //resultArray[i] = alphabetiseWord(resultArray[i]);
-            word.set(resultArray[i]);
-            context.write(word, occurances);
+        for(int i=0;i<splitString.length;i++){
+            alphabetisedWord = alphabetiseWord(resultArray[i]);
+            orderedWord.set(resultArray[i]);
+            context.write(alphabetisedWord, orderedWord);
         }
     }
   }
 
   public static class IntSumReducer
-       extends Reducer<Text,IntWritable,Text,IntWritable> {
-    private IntWritable result = new IntWritable();
+       extends Reducer<Text,Text,Text,Text> {
+    private Text result = new Text();
 
-    public void reduce(Text key, Iterable<IntWritable> values,
+    public void reduce(Text key, Iterable<Text> values,
                        Context context
                        ) throws IOException, InterruptedException {
-      int sum = 0;
-      for (IntWritable val : values) {
-        sum += val.get();
+      int resultWord = "";
+      for (Text val : values) {
+        resultWord += val.get();
       }
-      result.set(sum);
+      result.set(resultWord);
       context.write(key, result);
     }
   }
