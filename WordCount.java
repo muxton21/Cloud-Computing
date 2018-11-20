@@ -133,11 +133,20 @@ public class WordCount {
                        Context context
                        ) throws IOException, InterruptedException {
         //Set<Text> uniques = new HashSet<Text>();
-      String resultWord = "";
+      /* String resultWord = "";
       for (Text val : values) {
         resultWord += val.toString();
+      } */
+      Set<Text> uniques = new HashSet<Text>();
+      StringBuilder builder = new StringBuilder();
+      for(Text value : values){
+          if (uniques.add(value)) {
+              builder.append(value.toString());
+              builder.append(",");
+          }
       }
-      result.set(resultWord);
+      builder.setLength(builder.length() -1);
+      result.set(builder.toString());
       context.write(key, result);
     }
   }
