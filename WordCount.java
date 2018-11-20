@@ -96,7 +96,7 @@ public class WordCount {
     }
 
   public static class TokenizerMapper
-       extends Mapper<Object, Text, Text, IntWritable>{
+       extends Mapper<Object, Text, Text, Text>{
 
     private Text alphabetisedWord = new Text();
     private Text orderedWord = new Text();
