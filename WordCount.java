@@ -134,7 +134,7 @@ public class WordCount {
                        ) throws IOException, InterruptedException {
       String resultWord = "";
       for (Text val : values) {
-        resultWord += val.get();
+        resultWord += val;
       }
       result.set(resultWord);
       context.write(key, result);
