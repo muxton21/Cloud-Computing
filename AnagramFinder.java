@@ -29,7 +29,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class AnagramFinder {
 
-    public static class Mapper extends Mapper<Object, Text, Text, Text> {
+    public static class Mapper extends org.apache.hadoop.mapreduce.Mapper<Object, Text, Text, Text> {
 
         private Text sortedText = new Text();
         private Text outputValue = new Text();

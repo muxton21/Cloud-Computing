@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04faf09c-4286-4900-abf5-a49a1fadefe0" name="Default" comment="" />
+    <list default="true" id="04faf09c-4286-4900-abf5-a49a1fadefe0" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/AnagramFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/AnagramFinder.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +16,8 @@
       <file leaf-file-name="AnagramFinder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AnagramFinder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="36" column="35" lean-forward="true" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+            <state relative-caret-position="263">
+              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -43,8 +45,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/AnagramFinder.java" />
         <option value="$PROJECT_DIR$/WordCount.java" />
+        <option value="$PROJECT_DIR$/AnagramFinder.java" />
       </list>
     </option>
   </component>
@@ -156,12 +158,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542704045334</updated>
-      <workItem from="1542704051855" duration="8622000" />
+      <workItem from="1542704051855" duration="8771000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8622000" />
+    <option name="totallyTimeSpent" value="8771000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1307" y="-1" width="1045" height="716" extended-state="0" />
@@ -218,8 +220,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AnagramFinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="36" column="35" lean-forward="true" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+        <state relative-caret-position="263">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
