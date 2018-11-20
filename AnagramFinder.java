@@ -27,7 +27,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
-public class AnagramFinder extends Configured implements Tool {
+public class AnagramFinder {
 
     public static class Mapper extends org.apache.hadoop.mapreduce.Mapper<LongWritable, Text, Text, Text> {
 
@@ -96,7 +96,7 @@ public class AnagramFinder extends Configured implements Tool {
         Path inputPath = new Path(args[0]);
         Path outputPath = new Path(args[1]);
 
-        Job job = new Job(getConf(), "Anagram Finder");
+        Job job = new Job(conf, "Anagram Finder");
 
         job.setJarByClass(AnagramFinder.class);
 
