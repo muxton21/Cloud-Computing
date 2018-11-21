@@ -56,6 +56,17 @@ public class AnagramFinder {
         return oldArray;
     }
 
+    private static String alphabetiseWord(String word){
+        String[] wordArray = word.split("");
+        Arrays.sort(wordArray);
+        StringBuilder builder = new StringBuilder();
+        for(String char : wordArray){
+            builder.append(char);
+        }
+        String string = builder.toString;
+        return string;
+    }
+
     public static class Mapper extends org.apache.hadoop.mapreduce.Mapper<Object, Text, Text, Text> {
 
         private Text alphabetisedWord = new Text();
@@ -80,18 +91,6 @@ public class AnagramFinder {
                 context.write(alphabetisedWord, orderedWord);
             }
         }
-
-        private static String alphabetiseWord(String word){
-            String[] wordArray = word.split("");
-            Arrays.sort(wordArray);
-            StringBuilder builder = new StringBuilder();
-            for(String char : wordArray){
-                builder.append(char);
-            }
-            String string = builder.toString;
-            return string;
-        }
-
     }
 
     public static class Combiner extends org.apache.hadoop.mapreduce.Reducer<Text, Text, Text, Text> {
@@ -128,7 +127,7 @@ public class AnagramFinder {
             String[] anagramWords = {};
 
             //initate the size of the anagrams array (how many anagram words are in the .txt file)
-            int size = 0;
+            int wordLength = 0;
             //iterate through the array of unique words
             for (Text value : values) {
                 //is the word already covered
@@ -136,7 +135,7 @@ public class AnagramFinder {
                 //if the word is unique
                 if (!condition) {
                     //increase size value
-                    size++;
+                    wordLength++;
                     //push unique word to the anagram words array
                     anagramWords = arrayPush(value.toString(), anagramWords);
                 }
@@ -144,21 +143,21 @@ public class AnagramFinder {
 
             //if the number of unique words that have anagrams has a size greater than one
             //i.e. there is at least one anagram
-            if (size > 1) {
+            if (wordLength > 1) {
                 //set the count number to the number of occurances of these anagram words
-                count.set(size);
+                count.set(wordLength);
 
                 //converts the anagramWords array into an array of strings
                 StringBuilder builder = new StringBuilder();
                 String commaSarator = "";
-                for(String string : anagramWords){
+                for(String anagramWord : anagramWords){
                     builder.append(commaSarator);
-                    builder.append(string);
+                    builder.append(anagramWord);
+                    //seperate each word with a comma apart from last word
                     commaSarator = ", ";
                 }
-
-
                 String anagramsString = builder.toString();
+                //set the output value to the anagramsString
                 outputValue.set(anagramsString);
                 context.write(count, outputValue);
             }
