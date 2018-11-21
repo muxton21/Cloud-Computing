@@ -63,7 +63,7 @@ public class AnagramFinder {
         for(String letter : wordArray){
             builder.append(letter);
         }
-        String string = builder.toString;
+        String string = builder.toString();
         return string;
     }
 
