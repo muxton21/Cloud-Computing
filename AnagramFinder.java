@@ -60,8 +60,8 @@ public class AnagramFinder {
         String[] wordArray = word.split("");
         Arrays.sort(wordArray);
         StringBuilder builder = new StringBuilder();
-        for(String char : wordArray){
-            builder.append(char);
+        for(String letter : wordArray){
+            builder.append(letter);
         }
         String string = builder.toString;
         return string;
