@@ -170,7 +170,7 @@ public class AnagramFinder {
         Path outputPath = new Path(args[1]);
         Configuration conf = new Configuration();
 
-        Job job = Job.getInstance(conf, "Anagram Finder");
+        Job job = Job.getInstance(conf, "AnagramFinder");
 
         job.setJarByClass(AnagramFinder.class);
 
