@@ -16,8 +16,8 @@
       <file leaf-file-name="AnagramFinder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AnagramFinder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="173" lean-forward="true" selection-start-line="173" selection-end-line="173" />
+            <state relative-caret-position="264">
+              <caret line="172" column="33" selection-start-line="172" selection-start-column="33" selection-end-line="172" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,7 +48,7 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="487" />
+    <option name="x" value="527" />
     <option name="y" value="23" />
     <option name="width" value="685" />
     <option name="height" value="714" />
@@ -147,15 +147,15 @@
       <option name="presentableId" value="Default" />
       <updated>1542704045334</updated>
       <workItem from="1542704051855" duration="16864000" />
-      <workItem from="1542898508397" duration="1026000" />
+      <workItem from="1542898508397" duration="1436000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17890000" />
+    <option name="totallyTimeSpent" value="18300000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="487" y="23" width="685" height="714" extended-state="0" />
+    <frame x="527" y="23" width="685" height="714" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -223,8 +223,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AnagramFinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="173" lean-forward="true" selection-start-line="173" selection-end-line="173" />
+        <state relative-caret-position="264">
+          <caret line="172" column="33" selection-start-line="172" selection-start-column="33" selection-end-line="172" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
