@@ -77,11 +77,11 @@ public class AnagramFinder {
             //puts the entire text of the book into a string
             String line = value.toString();
             //split the string into an array of all words in the book
-            String[] splitString = line.split("[^-a-zA-Z']");
+            String[] splitString = line.split("(?!--)[^-a-zA-Z']");
 
             //remove any punctuation
             for(int i=0;i<splitString.length;i++){
-                splitString[i] = splitString[i].toLowerCase().replaceAll("[^a-z ]", "");
+                splitString[i] = splitString[i].toLowerCase().trim().replaceAll("[^-a-zA-ZAÁ-ÖØ-öø-ʸ'`\\w\\s]", "");;
             }
 
             //set each word to the key value pair in the mapper
