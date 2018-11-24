@@ -41,6 +41,7 @@ public class AnagramFinder {
         return false;
     }
 
+    //Function that appends a new element onto the end of an array
     private static String[] arrayPush(String item, String[] oldArray){
         // New array with an additional element
         String[] newArray = new String[oldArray.length + 1];
@@ -56,14 +57,19 @@ public class AnagramFinder {
         return oldArray;
     }
 
+    //Function that takes an english (or other language) word and arranges it into alphabetic letter order
     private static String alphabetiseWord(String word){
+        //split word into array of its characters
         String[] wordArray = word.split("");
+        //sort the array into alphabetic order
         Arrays.sort(wordArray);
+        //concatinate each character in the array together to produce the alphabetised string
         StringBuilder builder = new StringBuilder();
         for(String letter : wordArray){
             builder.append(letter);
         }
         String string = builder.toString();
+        //return the alphabetised word
         return string;
     }
 
